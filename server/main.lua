@@ -1,6 +1,11 @@
 --================================--
---       FIRE SCRIPT v1           --
---  by .Evan (.Evan#0001)         --
+--       FIRE SCRIPT v1.7.6       --
+--  by GIMI (+ foregz, Albo1125)  --
+--      License: GNU GPL 3.0      --
+--================================--
+
+--================================--
+--         VERSION CHECK          --
 --================================--
 
 Version = "1.7.6"
@@ -544,50 +549,50 @@ AddEventHandler(
 	end
 )
 
--- --================================--
--- --         AUTO-SUBSCRIBE         --
--- --================================--
+--================================--
+--         AUTO-SUBSCRIBE         --
+--================================--
 
--- if Config.Dispatch.enabled and Config.Dispatch.enableESX then
---     ESX = nil
+if Config.Dispatch.enabled and Config.Dispatch.enableESX then
+    ESX = nil
 
---     TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+    TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
---     local allowedJobs = {}
--- 	local firefighterJobs = Config.Fire.spawner.firefighterJobs or {}
+    local allowedJobs = {}
+	local firefighterJobs = Config.Fire.spawner.firefighterJobs or {}
 
---     if type(Config.Dispatch.enableESX) == "table" then
---         for k, v in pairs(Config.Dispatch.enableESX) do
---             allowedJobs[v] = true
---         end
---     else
---         allowedJobs[Config.Dispatch.enableESX] = true
--- 		firefighterJobs[Config.Dispatch.enableESX] = true
---     end
+    if type(Config.Dispatch.enableESX) == "table" then
+        for k, v in pairs(Config.Dispatch.enableESX) do
+            allowedJobs[v] = true
+        end
+    else
+        allowedJobs[Config.Dispatch.enableESX] = true
+		firefighterJobs[Config.Dispatch.enableESX] = true
+    end
 
---     RegisterNetEvent("esx:setJob")
---     AddEventHandler(
---         "esx:setJob",
---         function(source)
---             local xPlayer = ESX.GetPlayerFromId(source)
+    RegisterNetEvent("esx:setJob")
+    AddEventHandler(
+        "esx:setJob",
+        function(source)
+            local xPlayer = ESX.GetPlayerFromId(source)
     
---             if allowedJobs[xPlayer.job.name] then
---                 Dispatch:subscribe(source, firefighterJobs[xPlayer.job.name])
---             else
---                 Dispatch:unsubscribe(source)
---             end
---         end
---     )
+            if allowedJobs[xPlayer.job.name] then
+                Dispatch:subscribe(source, firefighterJobs[xPlayer.job.name])
+            else
+                Dispatch:unsubscribe(source)
+            end
+        end
+    )
     
---     RegisterNetEvent("esx:playerLoaded")
---     AddEventHandler(
---         "esx:playerLoaded",
---         function(source, xPlayer)
---             if allowedJobs[xPlayer.job.name] then
---                 Dispatch:subscribe(source, firefighterJobs[xPlayer.job.name])
---             else
---                 Dispatch:unsubscribe(source)
---             end
---         end
---     )
+    RegisterNetEvent("esx:playerLoaded")
+    AddEventHandler(
+        "esx:playerLoaded",
+        function(source, xPlayer)
+            if allowedJobs[xPlayer.job.name] then
+                Dispatch:subscribe(source, firefighterJobs[xPlayer.job.name])
+            else
+                Dispatch:unsubscribe(source)
+            end
+        end
+    )
 end
