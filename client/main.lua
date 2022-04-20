@@ -1,6 +1,11 @@
 --================================--
---       FIRE SCRIPT v1           --
---  by .Evan (.Evan#0001)         --
+--       FIRE SCRIPT v1.7.6       --
+--  by GIMI (+ foregz, Albo1125)  --
+--      License: GNU GPL 3.0      --
+--================================--
+
+--================================--
+--              CHAT              --
 --================================--
 
 TriggerEvent("chat:addTemplate", "firescript", '<div style="text-indent: 0 !important; padding: 0.5vw; margin: 0.05vw; color: rgba(255,255,255,0.9);background-color: rgba(250,26,56, 0.8); border-radius: 4px;"><b>{0}</b> {1} </div>')
@@ -139,8 +144,9 @@ TriggerEvent('chat:addSuggestion', '/randomfires', 'Manages the random fire spaw
 	}
 })
 
--- SYNC ON CONNECT
-
+--================================--
+--        SYNC ON CONNECT         --
+--================================--
 
 RegisterNetEvent('playerSpawned')
 AddEventHandler(
@@ -162,9 +168,9 @@ AddEventHandler(
 	end
 )
 
-
--- COMMANDS
-
+--================================--
+--            COMMANDS            --
+--================================--
 
 RegisterCommand(
 	'remindme',
@@ -287,9 +293,9 @@ RegisterCommand(
 	false
 )
 
-
--- EVENTS
-
+--================================--
+--             EVENTS             --
+--================================--
 
 RegisterNetEvent('fireClient:synchronizeFlames')
 AddEventHandler(

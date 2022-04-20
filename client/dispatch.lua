@@ -111,17 +111,19 @@ function Dispatch:remind(dispatchNumber)
      end
 end
 
--- DISPATCH REMOVER
+--================================--
+--     DISPATCH ROUTE REMOVAL     --
+--================================--
 
 if Config.Dispatch.clearGpsRadius and tonumber(Config.Dispatch.clearGpsRadius) then
-    Citizen.CreateThread(
-        function()
-            while true do
-                Citizen.Wait(5000)
-                if Dispatch.lastCall and Dispatch.blips[Dispatch.lastCall] and Dispatch.blips[Dispatch.lastCall].blip and #(Dispatch.blips[Dispatch.lastCall].coords - GetEntityCoords(GetPlayerPed(-1))) < Config.Dispatch.clearGpsRadius then
-                    ClearGpsMultiRoute()
-                end
-            end
-        end
-    )
+	Citizen.CreateThread(
+		function()
+			while true do
+				Citizen.Wait(5000)
+				if Dispatch.lastCall and Dispatch.blips[Dispatch.lastCall] and Dispatch.blips[Dispatch.lastCall].blip and #(Dispatch.blips[Dispatch.lastCall].coords - GetEntityCoords(GetPlayerPed(-1))) < Config.Dispatch.clearGpsRadius then
+					ClearGpsMultiRoute()
+				end
+			end
+		end
+	)
 end
